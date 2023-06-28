@@ -1,11 +1,12 @@
 package com.quiz.app.controller;
 
+import com.quiz.app.model.QuestionWrapper;
 import com.quiz.app.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("quiz")
@@ -18,6 +19,13 @@ public class QuizController {
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQues, @RequestParam String title) {
 
         return quizService.createQuiz(category, numQues, title);
+
+    }
+
+    @GetMapping("get/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id) {
+
+        return quizService.getQuizQuestions(id);
 
     }
 
